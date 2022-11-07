@@ -15,8 +15,18 @@ const UserSchema = new Schema(
             requred: true,
             validate: [isEmail, 'invalid email']
         },
-        thoughts: [],
-        friends: []
+        thoughts: [
+            {
+                type: Schema.Types.ObjectId,
+                ref:'Thought'
+            }
+        ],
+        friends: [
+            {
+                type: Schema.Types.ObjectId,
+                ref:'User'
+            }
+        ]
 
     },
     {

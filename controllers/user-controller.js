@@ -1,10 +1,14 @@
-const { User } = require('../models')
+const { User, Thought } = require('../models')
 
 const userController = {
     getAllUser(req, res) {
         User.find({})
         .populate({
             path: 'thoughts',
+            select: '-__v'
+        })
+        .populate({
+            path: 'friends',
             select: '-__v'
         })
         .select('-__v')
@@ -18,6 +22,10 @@ const userController = {
         User.findOne({ _id: params.id })
             .populate({
                 path: 'thoughts',
+                select: '-__v'
+            })
+            .populate({
+                path: 'friends',
                 select: '-__v'
             })
             .select('-__v')
@@ -85,7 +93,22 @@ const userController = {
         )
           .then(dbUserData => res.json(dbUserData))
           .catch(err => res.json(err));
-      }
+    },
+    addReaction({ params, body }, res) {
+        Thought.findOneAndUpdate(
+          { _id: params.thoughtId },
+          { $push: { reactions: body } },
+          { new: true, runValidators: true }
+        )
+        .then(dbThoughtData => {
+          if (!dbThoughtData) {
+            res.status(404).json({ message: 'No pizza found with this id!' });
+            return;
+          }
+          res.json(dbThoughtData);
+        })
+        .catch(err => res.json(err))
+    },
 
 }
 
