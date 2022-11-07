@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^6.7.1"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "the-social-api-network",
+  "description": "",
+  "version": "1.0.0",
+  "main": "server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mjd10m/The-Social-API-Network.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mjd10m/The-Social-API-Network/issues"
+  },
+  "homepage": "https://github.com/mjd10m/The-Social-API-Network#readme"
+}
